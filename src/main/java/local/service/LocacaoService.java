@@ -13,10 +13,11 @@ import local.exception.LocadoraException;
 
 public class LocacaoService {
 //TODO atualizar para muitos filmes
-    public Locacao alugarFilme(Cliente cliente, List<Filme> filmes) throws FilmeSemEstoqueException, LocadoraException {
-        if (cliente == null) {
+    public Locacao alugarFilme(Cliente cliente, List<Filme> filmes) throws FilmeSemEstoqueException, LocadoraException, Exception {
+        if (cliente == null || cliente.getNome() == null) {
             throw new LocadoraException("Impossivel locar sem um usuário");
         }
+        
 
         if (filmes == null || filmes.isEmpty()) {
             throw new LocadoraException("Nenhum filme foi selecionado");
@@ -41,6 +42,8 @@ public class LocacaoService {
         }
         //Salvando a locacao...	
         //TODO adicionar método para salvar
+        
+                
         return locacao;
     }
 }

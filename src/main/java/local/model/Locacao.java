@@ -37,7 +37,10 @@ public class Locacao {
 	public Double getValor() {
 		return valor;
 	}
-	public void setValor(Double valor) {
+	public void setValor(Double valor) throws Exception{
+            if(valor < 1 && valor > 9.99){
+                throw new Exception("Valor deve ser maior que 1.00 e menos que 9.99");
+            }
 		this.valor = valor;
 	}
 	public List<Filme> getFilmes() {

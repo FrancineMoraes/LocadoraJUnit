@@ -1,5 +1,7 @@
 package local.model;
 
+import local.exception.FilmeSemEstoqueException;
+
 public class Filme {
 
 
@@ -28,7 +30,12 @@ public class Filme {
         return estoque;
     }
 
-    public void setEstoque(Integer estoque) {
+    public void setEstoque(Integer estoque) throws FilmeSemEstoqueException{
+        if(estoque < 0){
+            throw new FilmeSemEstoqueException("Estoque não pode ficar negativo");
+        }else if(estoque > 99){
+            throw new FilmeSemEstoqueException("Estoque não pode ser maior que 99");
+        }
         this.estoque = estoque;
     }
 
