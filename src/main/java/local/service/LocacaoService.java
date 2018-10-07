@@ -46,4 +46,12 @@ public class LocacaoService {
                 
         return locacao;
     }
+
+    public void alugarFilme(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void alugarFilme(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

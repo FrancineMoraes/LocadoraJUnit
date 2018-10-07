@@ -49,7 +49,7 @@ public class LocacaoServiceTest {
         //Processamento e validação
         try {
             //TODO: Corrigir parâmetro para teste
-            ls.alugarFilme(cliente, null);
+            ls.alugarFilme(cliente);
             fail("Locação realizada com usuário null");
         }catch (LocadoraException | FilmeSemEstoqueException ex){
             assertEquals("Impossível locar sem um usuário",ex.getMessage());
@@ -60,9 +60,10 @@ public class LocacaoServiceTest {
     public void deveValidarValorLocacao() throws FilmeSemEstoqueException, LocadoraException {
         //TODO: Reescrever teste
         //Cenário
-
+            Cliente usuario = new Cliente();
+            LocacaoService ls = new LocacaoService();
         //Processamento
-
+            try {ls.alugarFilme   
         //Validação
 
     }
@@ -71,7 +72,7 @@ public class LocacaoServiceTest {
     public void deveRealizarLocacao(){
         //TODO: Deve realizar uma locação caso os argumentos sejam apropriados
         //Cenário
-
+        
         //Processamento
 
         //Validação
