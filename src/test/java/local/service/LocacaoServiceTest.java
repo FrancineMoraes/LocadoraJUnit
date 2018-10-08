@@ -1,5 +1,6 @@
 package local.service;
 
+import java.util.ArrayList;
 import local.exception.FilmeSemEstoqueException;
 import local.exception.LocadoraException;
 import local.model.Filme;
@@ -9,6 +10,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import local.exception.ClienteException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -41,32 +43,25 @@ public class LocacaoServiceTest {
 
 
     @Test
-    public void naoDeveLocarFilmeSemUsuario() {
+    public void naoDeveLocarFilmeSemUsuario() throws Exception {
         //Cenário
         Cliente cliente = null;
         LocacaoService ls = new LocacaoService();
+        Filme filme = new Filme();
+        
+        List<Filme> filmes = new ArrayList();
+        filmes.add(filme);
 
         //Processamento e validação
         try {
             //TODO: Corrigir parâmetro para teste
-            ls.alugarFilme(cliente);
+            ls.alugarFilme(cliente, filmes);
             fail("Locação realizada com usuário null");
-        }catch (LocadoraException | FilmeSemEstoqueException ex){
-            assertEquals("Impossível locar sem um usuário",ex.getMessage());
-            assertThat(ex.getMessage(),is(equalTo("Impossível locar sem um usuário")));
+        }catch (ClienteException ex){
+            assertThat(ex.getMessage(),is(equalTo("Nome é um campo obrigatório")));
         }
     }
-    @Test
-    public void deveValidarValorLocacao() throws FilmeSemEstoqueException, LocadoraException {
-        //TODO: Reescrever teste
-        //Cenário
-            Cliente usuario = new Cliente();
-            LocacaoService ls = new LocacaoService();
-        //Processamento
-            try {ls.alugarFilme   
-        //Validação
-
-    }
+    
 
     @Test
     public void deveRealizarLocacao(){

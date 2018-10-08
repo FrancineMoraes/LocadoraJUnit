@@ -20,22 +20,22 @@ public class Cliente {
 	}
 
 	public void setNome(String nome) {
-		if(nome == null){
+                String[] partes = nome.split(" ");
+                int tamanho = nome.length();
+                if(nome == null){
 			throw new ClienteException("Nome é um campo obrigatório");
 		}
-		if (nome.length() >= 2 && nome.length() <= 99){
+                else if(partes.length <= 1){
+                    throw new ClienteException("Nome do cadastro deve possuir pelo menos dois nomes");
+                }	
+                else if (tamanho < 2 || tamanho > 99){
 			throw new ClienteException("O nome do cliente deve possuir entre 2 e 99 caracteres");
 		}
-		if(!nome.matches("[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃçÇ ]+")){
+                else if(!nome.matches("[-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃçÇ]+")){
 			throw new ClienteException("Números e símbolos não são permitidos");
 		}
                 
-                String[] partes = nome.split(" ");
-                if(partes.length < 1){
-                    throw new ClienteException("Nome do cadastro deve possuir pelo menos dois nomes");
-                }
-                
-                
+                this.nome = nome;
 	}
 
 	@Override

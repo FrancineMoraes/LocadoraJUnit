@@ -31,10 +31,8 @@ public class Filme {
     }
 
     public void setEstoque(Integer estoque) throws FilmeSemEstoqueException{
-        if(estoque < 0){
-            throw new FilmeSemEstoqueException("Estoque não pode ficar negativo");
-        }else if(estoque > 99){
-            throw new FilmeSemEstoqueException("Estoque não pode ser maior que 99");
+        if(estoque < 0 || estoque > 99){
+            throw new FilmeSemEstoqueException("Estoque não pode ser negativo e o máximo é 99");
         }
         this.estoque = estoque;
     }
@@ -44,6 +42,9 @@ public class Filme {
     }
 
     public void setPrecoLocacao(Double precoLocacao) {
+        if(precoLocacao < 1 || precoLocacao > 9.99){
+            throw new FilmeSemEstoqueException("O preço da locação deve ser maior que 1,00 e menor que 9,99");
+        }
         this.precoLocacao = precoLocacao;
     }
 }
